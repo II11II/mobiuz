@@ -1,3 +1,5 @@
+import 'dart:io';
+
 /**
     @Author: Islomkhuja Akhrorov
     Created at:
@@ -78,6 +80,7 @@ class _RatePageState extends State<RatePage> {
                                     child: WebViewPlus(
                                       javascriptMode: JavascriptMode.disabled,
                                       debuggingEnabled: false,
+                                 
                                       onWebViewCreated: (c) {
                                         String html;
                                         if (context.locale.languageCode ==
@@ -102,7 +105,10 @@ class _RatePageState extends State<RatePage> {
                                               .replaceAll('ic_gift.png',
                                                   'https://i.ibb.co/HVWYFHD/ic-gift.png');
                                         }
-                                        print(html);
+                                        if (Platform.isIOS){
+                                          html += """<style>body {zoom: 3; 
+                                          -moz-transform: scale(3); 
+                                          -moz-transform-origin: 0 0;}</style>""";}
                                         c.loadString(html);
                                       },
                                     ),
