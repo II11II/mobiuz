@@ -38,6 +38,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+ 
     return Scaffold(
         key: _scaffoldKey,
         drawer: drawer(),
@@ -56,7 +57,8 @@ class _HomePageState extends State<HomePage> {
                   'mobiuz'.tr(),
                   style: TextStyle(fontSize: 16),
                 )),
-            Flexible(
+            Expanded(
+             
               child: GridView(
                   padding: EdgeInsets.all(30),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

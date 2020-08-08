@@ -28,6 +28,7 @@ class _RatePageState extends State<RatePage> {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
         appBar: AppBar(
           title: Text('rates'.tr()),
