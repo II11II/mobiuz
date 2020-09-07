@@ -14,7 +14,7 @@ class MinuteSmsBloc extends BaseBloc {
   Stream<List> get all => _all.stream;
 
   Stream<List> get minuteSms => _minuteSms.stream;
-
+  
   List<ValueNotifier> showButtons;
 
   Future getMinuteSms() async {

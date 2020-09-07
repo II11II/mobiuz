@@ -67,19 +67,30 @@ class _MinuteSmsPageState extends State<MinuteSmsPage> {
                           Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              ListTile(
+                              GestureDetector(
                                 onTap: () {
                                   bloc.showButtons[index].value =
                                       !bloc.showButtons[index].value;
                                 },
-                                leading: Text(
-                                    context.locale.languageCode == 'ru'
-                                        ? snapshot.data[index].titleRu
-                                        : snapshot.data[index].titleUz),
-                                trailing: Text(
-                                  snapshot.data[index].price,
-                                  style:
-                                      TextStyle(color: Colors.indigo.shade900),
+                                child: Row(
+                                  children: [
+                                    Expanded(flex: 2,
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(vertical: 16),
+                                        child: Text(context.locale.languageCode == 'ru'
+                                            ? snapshot.data[index].titleRu
+                                            : snapshot.data[index].titleUz),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(vertical: 16),
+                                      child: Text(
+                                        snapshot.data[index].price,
+                                        style: TextStyle(
+                                            color: Colors.indigo.shade900),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                               ValueListenableBuilder(

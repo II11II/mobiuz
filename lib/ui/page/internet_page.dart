@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
+
 /**
     @Author: Islomkhuja Akhrorov
     Created at:
@@ -18,9 +19,14 @@ class InternetPage extends StatefulWidget {
 
 class _InternetPageState extends State<InternetPage> {
   final bloc = InternetBloc();
-  List<Tab> kTabs = [
+  List<Widget> kTabs = [
     Tab(
-      child: Text('paketi'.tr().toUpperCase()),
+      child: FittedBox(
+          child: Text(
+        'paketi'.tr().toUpperCase(),
+        overflow: TextOverflow.fade,
+        maxLines: 1,
+      )),
     ),
     Tab(
       child: Text('night'.tr().toUpperCase()),
@@ -38,6 +44,7 @@ class _InternetPageState extends State<InternetPage> {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return DefaultTabController(
       length: 3,
       child: Scaffold(
@@ -47,7 +54,7 @@ class _InternetPageState extends State<InternetPage> {
         body: Column(
           children: [
             Container(
-              constraints: BoxConstraints.expand(height: 50),
+              constraints: BoxConstraints.expand(height: 50, width: size.width),
               child: TabBar(
                 labelColor: Colors.black,
                 tabs: kTabs,
@@ -128,15 +135,29 @@ class _InternetPageState extends State<InternetPage> {
                   Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      ListTile(
+                      GestureDetector(
                         onTap: () {
                           showButtons[index].value = !showButtons[index].value;
                         },
-                        leading: Text(data[index].titleRu),
-                        trailing: Text(
-                          data[index].price,
-                          style: TextStyle(color: Colors.indigo.shade900),
-                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                          Expanded(flex: 2,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 16),
+                              child: Text(data[index].titleRu,overflow: TextOverflow.visible,),
+                            ),
+                          ),
+                          Expanded(flex: 1,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 16),
+                              child: Text(
+                                data[index].price,overflow: TextOverflow.visible,maxLines: 1,
+                                style: TextStyle(color: Colors.indigo.shade900),
+                              ),
+                            ),
+                          ),
+                        ]),
                       ),
                       ValueListenableBuilder(
                           valueListenable: showButtons[index],
